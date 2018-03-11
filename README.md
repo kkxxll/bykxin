@@ -8,3 +8,4 @@ npm run build --report
 
 #### signin\signup
 #### server\mongoose
+#### admin
