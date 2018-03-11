@@ -31,6 +31,7 @@ exports.signin = function (req, res) {
         return
       }
       if (doc.password === param.password) {
+        console.log(req.session)
         res.json({
           status: '0',
           msg: '登录成功'

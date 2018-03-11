@@ -4,6 +4,7 @@ var path = require('path')
 var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
+var session = require('express-session')
 
 var mongoose = require('mongoose')
 mongoose.connect('mongodb://127.0.0.1:27017/bykxin')
@@ -30,6 +31,16 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
+
+app.use(session({
+  secret: 'byxin5',
+  name: 'bykxin559',
+  cookie: { maxAge: 60000 },
+  // 60s
+  resave: false,
+  saveUninitialized: true
+}))
+
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/api', index)
