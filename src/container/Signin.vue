@@ -16,13 +16,16 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">登录</el-button>
-        <router-link :to="{ name: 'Index'}"><el-button>返回首页</el-button></router-link>
+        <router-link :to="{ name: 'Index'}">
+          <el-button>返回首页</el-button>
+        </router-link>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
+// import axios from 'axios'
 export default {
   name: 'Signin',
   data () {
@@ -38,6 +41,14 @@ export default {
   methods: {
     onSubmit () {
       console.log('submit!')
+      // let params = {
+      //   userName: this.form.name,
+      //   userPass: this.form.pwd,
+      //   userSchool: this.form.school
+      // }
+      // axios.post('/api/users').then((response) => {
+      //   console.log(response)
+      // })
     }
   }
 }

@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'Signup',
   data () {
@@ -33,7 +34,20 @@ export default {
   },
   methods: {
     onSubmit () {
-      console.log('submit!')
+      let params = {
+        userName: this.form.name,
+        userPass: this.form.pwd1
+      }
+      axios.post('/api/users/signup', params).then((response) => {
+        console.log(response)
+        // let res = response.data
+        // if (res.status === '0') {
+        //   // this.$router.push({name: 'signin'})
+        //   console.log('signup success')
+        // } else {
+        //   console.log('signup error')
+        // }
+      })
     }
   }
 }
