@@ -10,3 +10,4 @@ npm run build --report
 #### server\mongoose
 #### admin
 #### proxyTable\axios
+#### signup (working)

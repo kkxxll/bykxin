@@ -19,6 +19,9 @@
         <router-link :to="{ name: 'Index'}">
           <el-button>返回首页</el-button>
         </router-link>
+        <router-link :to="{ name: 'Signup'}">
+          <el-button>返回登录页</el-button>
+        </router-link>
       </el-form-item>
     </el-form>
   </div>

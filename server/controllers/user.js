@@ -1,4 +1,4 @@
-// var User = require('../models/user')
+var User = require('../models/user')
 
 // exports.showSignup = function (req, res) {
 //   res.render('signup', {
@@ -12,27 +12,34 @@
 // }
 
 exports.signup = function (req, res) {
-  var _user = req.body
-  console.log(_user)
+  let param = {
+    name: req.body.userName,
+    password: req.body.userPass
+  }
+  console.log(param)
 
-  // User.findOne({ name: _user.name }, function (err, user) {
-  //   if (err) {
-  //     console.log(err)
-  //   }
-  //   if (user) {
-  //     return res.redirect('/signin')
-  //   } else {
-  //     var user = new User(_user)
-
-  //     user.save(function (err, user) {
-  //       if (err) {
-  //         console.log(err)
-  //       }
-
-  //       res.redirect('/')
-  //     })
-  //   }
-  // })
+  User.findOne({ name: param.name }, function (err, doc) {
+    if (err) {
+      res.json({
+        status: '1',
+        msg: err.message
+      })
+    } else {
+      if (doc) {
+        res.json({
+          status: '2',
+          msg: '用户名已存在'
+        })
+      } else {
+        let _user = new User(param)
+        _user.save()
+        res.json({
+          status: '0',
+          msg: '注册成功'
+        })
+      }
+    }
+  })
 }
 // exports.list = function (req, res) {
 //   User.fetch(function (err, users) {
