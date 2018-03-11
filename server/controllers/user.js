@@ -11,6 +11,39 @@ var User = require('../models/user')
 //   })
 // }
 
+exports.signin = function (req, res) {
+  let param = {
+    name: req.body.userName,
+    password: req.body.userPass
+  }
+  User.findOne({ name: param.name }, function (err, doc) {
+    if (err) {
+      res.json({
+        status: '1',
+        msg: err.message
+      })
+    } else {
+      if (!doc) {
+        res.json({
+          status: '2',
+          msg: '该用户名还未注册'
+        })
+        return
+      }
+      if (doc.password === param.password) {
+        res.json({
+          status: '0',
+          msg: '登录成功'
+        })
+      } else {
+        res.json({
+          status: '1',
+          msg: '密码错误'
+        })
+      }
+    }
+  })
+}
 exports.signup = function (req, res) {
   let param = {
     name: req.body.userName,

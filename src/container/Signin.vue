@@ -46,9 +46,37 @@ export default {
         userName: this.form.name,
         userPass: this.form.pwd
       }
-      axios.post('/api/users/signin', params).then((response) => {
-        console.log(response.data)
-      })
+      if (params.userName === '' || params.userPass === '') {
+        this.$message({
+          message: '用户名或密码不能为空哦',
+          type: 'warning'
+        })
+      } else {
+        axios.post('/api/users/signin', params).then((response) => {
+          let res = response.data
+          switch (res.status) {
+            case '0':
+              this.$router.push({name: 'Index'})
+              break
+            case '2':
+              this.$message({
+                showClose: true,
+                message: '该帐号还未注册哦',
+                type: 'warning',
+                center: true
+              })
+              break
+            default:
+              this.$message({
+                showClose: true,
+                message: '密码错误',
+                type: 'error',
+                center: true
+              })
+              break
+          }
+        })
+      }
     }
   }
 }
