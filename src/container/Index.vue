@@ -8,7 +8,7 @@
       <el-breadcrumb-item :to="{ path: '/signin' }">登录</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/signup' }">注册</el-breadcrumb-item>
       <el-breadcrumb-item>退出</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{ path: '/admin' }">系统后台</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/admin/user' }">系统后台</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
     <el-button type="success">成功按钮</el-button>

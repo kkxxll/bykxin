@@ -11,3 +11,5 @@ npm run build --report
 #### admin
 #### proxyTable\axios
 #### signup (working)
+#### userlist
+#### userlist+deluser+date-moment

@@ -28,7 +28,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 export default {
   name: 'Signin',
   data () {
@@ -36,22 +36,19 @@ export default {
       form: {
         name: '',
         pwd: '',
-        delivery: false,
         type: []
       }
     }
   },
   methods: {
     onSubmit () {
-      console.log('submit!')
-      // let params = {
-      //   userName: this.form.name,
-      //   userPass: this.form.pwd,
-      //   userSchool: this.form.school
-      // }
-      // axios.post('/api/users').then((response) => {
-      //   console.log(response)
-      // })
+      let params = {
+        userName: this.form.name,
+        userPass: this.form.pwd
+      }
+      axios.post('/api/users/signin', params).then((response) => {
+        console.log(response.data)
+      })
     }
   }
 }

@@ -4,5 +4,7 @@ var User = require('../controllers/user')
 
 /* GET users listing. */
 router.post('/signup', User.signup)
+router.get('/list', User.list)
+router.delete('/del', User.del)
 
 module.exports = router

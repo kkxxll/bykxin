@@ -41,18 +41,34 @@ exports.signup = function (req, res) {
     }
   })
 }
-// exports.list = function (req, res) {
-//   User.fetch(function (err, users) {
-//     if (err) {
-//       console.log(err)
-//     }
-//     res.render('userlist', {
-//       title: '用户列表页',
-//       users: users
-//     })
-//   })
-// }
+exports.list = function (req, res) {
+  User.fetch(function (err, users) {
+    if (err) {
+      console.log(err)
+    }
+    res.json({
+      status: '0',
+      users: users
+    })
+  })
+}
 
+exports.del = function (req, res) {
+  let name = req.body.name
+  User.remove({ name: name }, function (err, book) {
+    if (err) {
+      res.json({
+        status: '1',
+        msg: err.message
+      })
+    } else {
+      res.json({
+        status: '0',
+        users: '删除成功'
+      })
+    }
+  })
+}
 // exports.signin = function (req, res) {
 //   var _user = req.body.user
 //   var name = _user.name
