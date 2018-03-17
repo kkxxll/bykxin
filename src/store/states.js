@@ -1,3 +1,4 @@
 export const state = {
-  user: ''
+  user: '',
+  admin: 0
 }

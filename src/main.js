@@ -18,14 +18,24 @@ router.beforeEach((to, from, next) => {
   axios
     .get('/api/users/showSignin')
     .then(response => {
-      let res = response.data
-      if (!res.msg) {
-        // session过期时
-        store.dispatch('setUser', '')
-      }
+      let res = response.data.msg
+      // session还没过期，防止页面刷新时vuex失效
+      store.dispatch('setUser', res.user)
+      store.dispatch('setAdmin', res.role)
     }).then(function () {
       if (to.meta.signinRequired) {
+        console.log('?????')
         if (store.state.user) {
+          next()
+        } else {
+          next({ name: 'Index' })
+        }
+      } else {
+        next()
+      }
+
+      if (to.meta.adminRequired) {
+        if ((store.state.admin > 90) && store.state.user) {
           next()
         } else {
           next({ name: 'Index' })

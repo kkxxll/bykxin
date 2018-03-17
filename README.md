@@ -18,3 +18,5 @@ npm run build --report
 #### user session working
 #### vuex router.beforeEach
 #### user module working
+#### adminRequired signinRequired
+#### begin goods module

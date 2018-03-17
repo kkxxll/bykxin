@@ -7,6 +7,7 @@ import UserCenter from '@/container/UserCenter'
 import Admin from '@/container/Admin/Index'
 import AdminUser from '@/container/Admin/UserList'
 import AdminGoods from '@/container/Admin/GoodsList'
+import NotFound from '@/container/NotFound'
 
 Vue.use(Router)
 
@@ -41,7 +42,7 @@ export default new Router({
       path: '/admin',
       name: 'Admin',
       meta: {
-        signinRequired: true
+        adminRequired: true
       },
       component: Admin,
       children: [
@@ -49,7 +50,7 @@ export default new Router({
           path: 'user',
           name: 'AdminUser',
           meta: {
-            signinRequired: true
+            adminRequired: true
           },
           component: AdminUser
         },
@@ -57,11 +58,16 @@ export default new Router({
           path: 'goods',
           name: 'AdminGoods',
           meta: {
-            signinRequired: true
+            adminRequired: true
           },
           component: AdminGoods
         }
       ]
+    },
+    {
+      path: '*',
+      component: NotFound
     }
-  ]
+  ],
+  mode: 'history'
 })

@@ -4,10 +4,10 @@
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>我是卖家</el-breadcrumb-item>
       <el-breadcrumb-item>我是买家</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{ path: '/usercenter' }">个人中心</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/usercenter' }" v-show="user">个人中心</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/signin' }" v-show="!user">登录</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/signup' }" v-show="!user">注册</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{ path: '/admin/user' }">系统后台</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/admin/user' }" v-show="admin > 90">系统后台</el-breadcrumb-item>
       <el-breadcrumb-item></el-breadcrumb-item>
     </el-breadcrumb>
     <el-tag v-show="user">欢迎您，{{user}}</el-tag>
@@ -27,6 +27,9 @@ export default {
   computed: {
     user () {
       return this.$store.getters.user
+    },
+    admin () {
+      return this.$store.getters.admin
     }
   },
   methods: {
@@ -40,6 +43,7 @@ export default {
           center: true
         })
         this.$store.dispatch('setUser', '')
+        this.$store.dispatch('setAdmin', 0)
         this.$router.push({ name: 'Index' })
       })
     }

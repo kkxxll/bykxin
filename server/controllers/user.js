@@ -1,16 +1,5 @@
 var User = require('../models/user')
 
-// exports.showSignup = function (req, res) {
-//   res.render('signup', {
-//     title: '用户注册页'
-//   })
-// }
-// exports.showSignin = function (req, res) {
-//   res.render('signin', {
-//     title: '用户登录页'
-//   })
-// }
-
 exports.signin = function (req, res) {
   let param = {
     name: req.body.userName,
@@ -31,10 +20,15 @@ exports.signin = function (req, res) {
       }
       if (doc.password === param.password) {
         req.session.user = doc.name
-        console.log(req.session)
+        req.session.role = doc.role
+        // console.log(req.session)
+        let data = {
+          name: doc.name,
+          rank: doc.role
+        }
         res.json({
           status: '0',
-          msg: doc.name
+          msg: data
         })
       } else {
         res.json({
@@ -134,61 +128,20 @@ exports.userinfo = function (req, res) {
 }
 exports.logout = function (req, res) {
   delete req.session.user
+  delete req.session.role
   res.json({
     status: '0',
     msg: '已退出'
   })
 }
 exports.showSignin = function (req, res) {
+  // 返回用户名和权限
+  let data = {
+    user: req.session.user,
+    role: req.session.role
+  }
   res.json({
     status: '0',
-    msg: req.session.user
+    msg: data
   })
 }
-// exports.signin = function (req, res) {
-//   var _user = req.body.user
-//   var name = _user.name
-//   var password = _user.password
-
-//   User.findOne({ name: name }, function (err, user) {
-//     if (err) {
-//       console.log(err)
-//     }
-//     if (!user) {
-//       return res.redirect('/signup')
-//     }
-
-//     user.comparePassword(password, function (err, isMatch) {
-//       if (err) {
-//         console.log(err)
-//       }
-//       if (isMatch) {
-//         req.session.user = user
-//         res.redirect('/')
-//       } else {
-//         res.redirect('/signin')
-//         // console.log('not match')
-//       }
-//     })
-//   })
-// }
-// exports.logout = function (req, res) {
-//   delete req.session.user
-//   // delete app.locals.user
-//   res.redirect('/')
-// }
-
-// exports.signinRequired = function (req, res, next) {
-//   var user = req.session.user
-//   if (!user) {
-//     return res.redirect('/signin')
-//   }
-//   next()
-// }
-// exports.adminRequired = function (req, res, next) {
-//   var user = req.session.user
-//   if (user.role <= 10) {
-//     return res.redirect('/signin')
-//   }
-//   next()
-// }

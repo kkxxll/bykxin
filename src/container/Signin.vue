@@ -6,7 +6,7 @@
         <el-input v-model="form.name"></el-input>
       </el-form-item>
       <el-form-item label="密码">
-        <el-input v-model="form.pwd"></el-input>
+        <el-input type="password" v-model="form.pwd"></el-input>
       </el-form-item>
       <el-form-item label="">
         <el-checkbox-group v-model="form.type">
@@ -56,7 +56,8 @@ export default {
           let res = response.data
           switch (res.status) {
             case '0':
-              this.$store.dispatch('setUser', res.msg)
+              this.$store.dispatch('setUser', res.msg.name)
+              this.$store.dispatch('setAdmin', res.msg.rank)
               this.$router.push({name: 'Index'})
               break
             case '2':
