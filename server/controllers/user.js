@@ -34,7 +34,7 @@ exports.signin = function (req, res) {
         console.log(req.session)
         res.json({
           status: '0',
-          msg: '登录成功'
+          msg: doc.name
         })
       } else {
         res.json({
@@ -131,6 +131,19 @@ exports.userinfo = function (req, res) {
       msg: '用户cookie过期'
     })
   }
+}
+exports.logout = function (req, res) {
+  delete req.session.user
+  res.json({
+    status: '0',
+    msg: '已退出'
+  })
+}
+exports.showSignin = function (req, res) {
+  res.json({
+    status: '0',
+    msg: req.session.user
+  })
 }
 // exports.signin = function (req, res) {
 //   var _user = req.body.user

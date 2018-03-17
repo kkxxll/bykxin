@@ -16,3 +16,5 @@ npm run build --report
 #### signin (working)
 #### session
 #### user session working
+#### vuex router.beforeEach
+#### user module working

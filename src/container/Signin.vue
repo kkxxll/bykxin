@@ -56,6 +56,7 @@ export default {
           let res = response.data
           switch (res.status) {
             case '0':
+              this.$store.dispatch('setUser', res.msg)
               this.$router.push({name: 'Index'})
               break
             case '2':

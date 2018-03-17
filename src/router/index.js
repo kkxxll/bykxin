@@ -20,6 +20,9 @@ export default new Router({
         {
           path: 'usercenter',
           name: 'UserCenter',
+          meta: {
+            signinRequired: true
+          },
           component: UserCenter
         }
       ]
@@ -37,16 +40,25 @@ export default new Router({
     {
       path: '/admin',
       name: 'Admin',
+      meta: {
+        signinRequired: true
+      },
       component: Admin,
       children: [
         {
           path: 'user',
           name: 'AdminUser',
+          meta: {
+            signinRequired: true
+          },
           component: AdminUser
         },
         {
           path: 'goods',
           name: 'AdminGoods',
+          meta: {
+            signinRequired: true
+          },
           component: AdminGoods
         }
       ]
