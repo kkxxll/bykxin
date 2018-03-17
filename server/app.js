@@ -35,13 +35,18 @@ app.use(cookieParser())
 app.use(session({
   secret: 'byxin5',
   name: 'bykxin559',
-  cookie: { maxAge: 60000 },
-  // 60s
-  resave: false,
+  cookie: { maxAge: 10000 },
+  // 10s
+  resave: true,
+  rolling: true,
   saveUninitialized: true
 }))
 
 app.use(express.static(path.join(__dirname, 'public')))
+
+// app.use(function (req, res, next) {
+//   next()
+// })
 
 app.use('/api', index)
 app.use('/api/users', users)

@@ -36,7 +36,7 @@ export default {
     }
   },
   mounted () {
-    moment().format()
+    // moment().format()
     axios.get('/api/users/list').then((response) => {
       let res = response.data
       if (res.status === '0') {

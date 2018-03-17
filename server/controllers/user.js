@@ -28,9 +28,9 @@ exports.signin = function (req, res) {
           status: '2',
           msg: '该用户名还未注册'
         })
-        return
       }
       if (doc.password === param.password) {
+        req.session.user = doc.name
         console.log(req.session)
         res.json({
           status: '0',
@@ -86,7 +86,6 @@ exports.list = function (req, res) {
     })
   })
 }
-
 exports.del = function (req, res) {
   let name = req.body.name
   User.remove({ name: name }, function (err, book) {
@@ -102,6 +101,36 @@ exports.del = function (req, res) {
       })
     }
   })
+}
+exports.userinfo = function (req, res) {
+  let username = req.session.user
+  if (username) {
+    User.findOne({ name: username }, function (err, doc) {
+      if (err) {
+        res.json({
+          status: '1',
+          msg: err.message
+        })
+      } else {
+        if (!doc) {
+          res.json({
+            status: '2',
+            msg: '该用户不存在'
+          })
+        } else {
+          res.json({
+            status: '0',
+            msg: doc
+          })
+        }
+      }
+    })
+  } else {
+    res.json({
+      status: '3',
+      msg: '用户cookie过期'
+    })
+  }
 }
 // exports.signin = function (req, res) {
 //   var _user = req.body.user

@@ -3,7 +3,8 @@ import Router from 'vue-router'
 import Index from '@/container/Index'
 import Signin from '@/container/Signin'
 import Signup from '@/container/Signup'
-import Admin from '@/container/Admin/index'
+import UserCenter from '@/container/UserCenter'
+import Admin from '@/container/Admin/Index'
 import AdminUser from '@/container/Admin/UserList'
 import AdminGoods from '@/container/Admin/GoodsList'
 
@@ -14,7 +15,14 @@ export default new Router({
     {
       path: '/',
       name: 'Index',
-      component: Index
+      component: Index,
+      children: [
+        {
+          path: 'usercenter',
+          name: 'UserCenter',
+          component: UserCenter
+        }
+      ]
     },
     {
       path: '/signin',
