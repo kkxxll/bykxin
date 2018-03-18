@@ -18,6 +18,7 @@ mongoose.connection.on('error', function () {
 
 var index = require('./routes/index')
 var users = require('./routes/users')
+var category = require('./routes/category')
 
 var app = express()
 
@@ -35,8 +36,8 @@ app.use(cookieParser())
 app.use(session({
   secret: 'byxin5',
   name: 'bykxin559',
-  cookie: { maxAge: 10000 },
-  // 10s
+  cookie: { maxAge: 60000 },
+  // 60s
   resave: true,
   rolling: true,
   saveUninitialized: true
@@ -50,6 +51,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/api', index)
 app.use('/api/users', users)
+app.use('/api/category', category)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

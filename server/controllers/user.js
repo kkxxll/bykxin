@@ -44,7 +44,7 @@ exports.signup = function (req, res) {
     name: req.body.userName,
     password: req.body.userPass
   }
-  console.log(param)
+  // console.log(param)
 
   User.findOne({ name: param.name }, function (err, doc) {
     if (err) {

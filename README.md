@@ -20,3 +20,4 @@ npm run build --report
 #### user module working
 #### adminRequired signinRequired
 #### begin goods module
+#### category

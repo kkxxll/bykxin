@@ -13,11 +13,7 @@
           <el-menu-item index="2-4-3">选项3</el-menu-item>
         </el-submenu> -->
       </el-submenu>
-      <el-submenu index="3">
-        <template slot="title">订单管理</template>
-        <el-menu-item index="3-1">查看订单</el-menu-item>
-        <el-menu-item index="3-2">编辑订单</el-menu-item>
-      </el-submenu>
+      <el-menu-item index="AdminCategory">分类管理</el-menu-item>
       <el-menu-item index="4" disabled>消息中心</el-menu-item>
     </el-menu>
     <router-view/>

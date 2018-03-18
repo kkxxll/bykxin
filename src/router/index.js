@@ -7,6 +7,7 @@ import UserCenter from '@/container/UserCenter'
 import Admin from '@/container/Admin/Index'
 import AdminUser from '@/container/Admin/UserList'
 import AdminGoods from '@/container/Admin/GoodsList'
+import AdminCategory from '@/container/Admin/CategoryList'
 import NotFound from '@/container/NotFound'
 
 Vue.use(Router)
@@ -61,6 +62,14 @@ export default new Router({
             adminRequired: true
           },
           component: AdminGoods
+        },
+        {
+          path: 'category',
+          name: 'AdminCategory',
+          meta: {
+            adminRequired: true
+          },
+          component: AdminCategory
         }
       ]
     },
