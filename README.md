@@ -21,3 +21,5 @@ npm run build --report
 #### adminRequired signinRequired
 #### begin goods module
 #### category
+#### sell add
+#### buy under way

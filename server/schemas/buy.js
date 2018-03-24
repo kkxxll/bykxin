@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 var objectId = Schema.Types.ObjectId
 
-var SellSchema = new Schema({
+var BuySchema = new Schema({
   author: String,
   title: String,
   desc: String,
@@ -24,7 +24,7 @@ var SellSchema = new Schema({
   }
 })
 
-SellSchema.statics = {
+BuySchema.statics = {
   fetch: function (cb) {
     return this.find({})
       .sort('meta.createAt')
@@ -35,4 +35,4 @@ SellSchema.statics = {
   }
 }
 
-module.exports = SellSchema
+module.exports = BuySchema

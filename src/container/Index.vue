@@ -2,8 +2,8 @@
   <div class="hello">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>我是卖家</el-breadcrumb-item>
-      <el-breadcrumb-item>我是买家</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/buyer' }">我是卖家</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/seller' }">我是买家</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/usercenter' }" v-show="user">个人中心</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/signin' }" v-show="!user">登录</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/signup' }" v-show="!user">注册</el-breadcrumb-item>

@@ -24,7 +24,6 @@ router.beforeEach((to, from, next) => {
       store.dispatch('setAdmin', res.role)
     }).then(function () {
       if (to.meta.signinRequired) {
-        console.log('?????')
         if (store.state.user) {
           next()
         } else {

@@ -4,6 +4,12 @@ import Index from '@/container/Index'
 import Signin from '@/container/Signin'
 import Signup from '@/container/Signup'
 import UserCenter from '@/container/UserCenter'
+import Buyer from '@/container/Buyer'
+import Seller from '@/container/Seller'
+
+import SellNew from '@/container/SellNew'
+import BuyNew from '@/container/BuyNew'
+
 import Admin from '@/container/Admin/Index'
 import AdminUser from '@/container/Admin/UserList'
 import AdminGoods from '@/container/Admin/GoodsList'
@@ -26,6 +32,16 @@ export default new Router({
             signinRequired: true
           },
           component: UserCenter
+        },
+        {
+          path: 'buyer',
+          name: 'Buyer',
+          component: Buyer
+        },
+        {
+          path: 'seller',
+          name: 'Seller',
+          component: Seller
         }
       ]
     },
@@ -38,6 +54,22 @@ export default new Router({
       path: '/signup',
       name: 'Signup',
       component: Signup
+    },
+    {
+      path: '/sellnew',
+      name: 'SellNew',
+      meta: {
+        signinRequired: true
+      },
+      component: SellNew
+    },
+    {
+      path: '/buynew',
+      name: 'BuyNew',
+      meta: {
+        signinRequired: true
+      },
+      component: BuyNew
     },
     {
       path: '/admin',
