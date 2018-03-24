@@ -24,3 +24,5 @@ npm run build --report
 #### sell add
 #### buy under way
 #### buy add
+#### category debug
+#### sell category list
