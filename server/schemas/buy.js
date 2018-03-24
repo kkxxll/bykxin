@@ -6,7 +6,6 @@ var BuySchema = new Schema({
   author: String,
   title: String,
   desc: String,
-  price: Number,
   photo: [{ type: String }],
   pv: {
     type: Number,

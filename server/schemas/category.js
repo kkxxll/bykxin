@@ -4,6 +4,7 @@ var ObjectId = Schema.Types.ObjectId
 var CategorySchema = new Schema({
   name: String,
   sells: [{ type: ObjectId, ref: 'Sell' }],
+  buys: [{ type: ObjectId, ref: 'Buy' }],
   meta: {
     createAt: {
       type: Date,

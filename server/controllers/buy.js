@@ -1,42 +1,42 @@
 var mongoose = require('mongoose')
-var Sell = require('../models/sell')
+var Buy = require('../models/buy')
 var Category = require('../models/category')
 
 exports.save = function (req, res) {
-  var sellObj = {
+  var buyObj = {
     author: req.body.author,
     title: req.body.title,
     desc: req.body.desc,
-    price: req.body.price,
+    // price: req.body.price,
     photo: req.body.photo,
     category: req.body.category
   }
-  Category.findOne({ name: sellObj.category }, function (err, doc) {
+  Category.findOne({ name: buyObj.category }, function (err, doc) {
     if (err) {
       console.log(err)
     } else {
-      sellObj.categoryId = doc._id
+      buyObj.categoryId = doc._id
     }
   })
-  var _sell = new Sell({
-    author: sellObj.author,
-    title: sellObj.title,
-    desc: sellObj.desc,
-    price: sellObj.price,
-    photo: sellObj.photo,
-    category: new mongoose.Types.ObjectId(sellObj.categoryId)
+  var _buy = new Buy({
+    author: buyObj.author,
+    title: buyObj.title,
+    desc: buyObj.desc,
+    // price: buyObj.price,
+    photo: buyObj.photo,
+    category: new mongoose.Types.ObjectId(buyObj.categoryId)
   })
 
-  _sell.save(function (err, sell) {
-    console.log(sell.category)
+  _buy.save(function (err, buy) {
+    console.log(buy.category)
     if (err) {
       console.log(err)
     } else {
-      Category.findById(sellObj.categoryId, function (err, doc) {
+      Category.findById(buyObj.categoryId, function (err, doc) {
         if (err) {
           console.log(err)
         } else {
-          doc.sells.push(sell._id)
+          doc.buys.push(buy._id)
           doc.save(function (err) {
             if (err) {
               console.log(err)
@@ -44,7 +44,7 @@ exports.save = function (req, res) {
           })
           res.json({
             status: '0',
-            msg: '出售商品添加成功'
+            msg: '求购商品添加成功'
           })
         }
       })

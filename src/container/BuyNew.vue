@@ -11,9 +11,6 @@
             <el-radio v-for="item in form.category" :label="item" :key="item"></el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="价格￥">
-          <el-input v-model="form.price" placeholder="0.00"></el-input>
-        </el-form-item>
         <el-form-item label="商品描述" class="buynew-desc">
           <el-input type="textarea" v-model="form.desc" placeholder="描述一下商品的细节"></el-input>
         </el-form-item>
@@ -53,7 +50,6 @@ export default {
         delivery: false,
         curcategory: '',
         desc: '',
-        price: '',
         category: [
         ],
         photos: [
@@ -111,9 +107,6 @@ export default {
       } else if (!this.form.curcategory) {
         this.showMessage('请选择商品分类')
         return false
-      } else if (!this.form.price) {
-        this.showMessage('请输入商品价格')
-        return false
       } else if (!this.form.desc) {
         this.showMessage('请输入商品描述')
         return false
@@ -130,34 +123,33 @@ export default {
         author: store.state.user,
         title: this.form.name,
         desc: this.form.desc,
-        price: this.form.price,
         photo: this.form.photos,
         category: this.form.curcategory
       }
-      console.log(params)
 
-      // axios.post('/api/buy/new', params).then((response) => {
-      //   let res = response.data
-      //   switch (res.status) {
-      //     case '0':
-      //       this.$message({
-      //         showClose: true,
-      //         message: res.msg,
-      //         type: res.msg,
-      //         center: true
-      //       })
-      //       this.$router.push({name: 'Buyer'})
-      //       break
-      //     default:
-      //       this.$message({
-      //         showClose: true,
-      //         message: '服务器错误',
-      //         type: 'error',
-      //         center: true
-      //       })
-      //       break
-      //   }
-      // })
+      axios.post('/api/buy/new', params).then((response) => {
+        let res = response.data
+        console.log(res.msg)
+        switch (res.status) {
+          case '0':
+            this.$message({
+              showClose: true,
+              message: res.msg,
+              type: res.msg,
+              center: true
+            })
+            this.$router.push({name: 'Seller'})
+            break
+          default:
+            this.$message({
+              showClose: true,
+              message: '服务器错误',
+              type: 'error',
+              center: true
+            })
+            break
+        }
+      })
     }
   }
 }
