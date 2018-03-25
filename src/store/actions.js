@@ -4,5 +4,8 @@ export const actions = {
   },
   setAdmin ({ commit, state }, num) {
     commit('SET_ADMIN', { rank: num })
+  },
+  setSellDetail ({ commit, state }, obj) {
+    commit('SET_SELLDETAIL', { selldetail: obj })
   }
 }

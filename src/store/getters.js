@@ -4,5 +4,8 @@ export const getters = {
   },
   admin: state => {
     return state.admin
+  },
+  sellDetail: state => {
+    return state.sellDetail
   }
 }

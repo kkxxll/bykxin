@@ -10,10 +10,11 @@
           <template slot="title">
             {{item}}
             <i class="el-icon-loading"></i>
+            <el-button type="text" class="seller-morebtn" @click="openSellList(item)">查看更多</el-button>
           </template>
           <div class="seller-con">
             <el-row>
-              <el-col :span="5" v-for="(sell, index) in sells[index]" :key="index" :offset="index > 0 ? 1 : 0">
+              <el-col :span="5" v-for="(sell, index) in sells[index]" :key="index" :offset="index % 4 > 0 ? 1 : 0">
                 <el-card :body-style="{ padding: '0px' }">
                   <img :src="sell.photo[0]" class="image">
                   <div style="padding: 14px;">
@@ -21,7 +22,7 @@
                     <span class="seller-price">￥{{sell.price}}</span>
                     <div class="bottom clearfix">
                       <time class="time">{{ sell.meta.createAt|formatTime }}</time>
-                      <el-button type="text" class="button" @click="openDetail(sell)">查看详情</el-button>
+                      <el-button type="text" class="button" @click="openDetail(sell._id, item)">查看详情</el-button>
                     </div>
                   </div>
                 </el-card>
@@ -36,6 +37,7 @@
 </template>
 
 <script>
+import SellDetail from './SellDetail'
 import moment from 'moment'
 import axios from 'axios'
 export default {
@@ -45,7 +47,10 @@ export default {
       currentDate: new Date(),
       activecategory: [],
       category: [],
-      sells: []
+      categoryObj: {},
+      sells: [],
+      sellDetail: {}
+      // sellall: []
     }
   },
   filters: {
@@ -65,6 +70,7 @@ export default {
       res.categories.forEach((item, index) => {
         arr.push(item.name)
         this.activecategory.push(index)
+        this.categoryObj[item.name] = item._id
         this.getByCategory(item._id)
       })
       this.category = arr
@@ -80,13 +86,19 @@ export default {
     getByCategory (id) {
       axios.get('/api/sell/list/' + id).then((response) => {
         let res = response.data
-        this.sells.push(res.sells)
-        console.log(res.sells)
+        this.sells.push(res.sells.slice(0, 4))
       })
     },
-    openDetail (itme) {
-      console.log(itme)
+    openDetail (id, name) {
+      this.$router.push({name: 'SellDetail', params: { id, name }})
+    },
+    openSellList (name) {
+      let id = this.categoryObj[name]
+      this.$router.push({name: 'SellList', params: { id, name }})
     }
+  },
+  components: {
+    SellDetail
   }
 }
 </script>
@@ -137,5 +149,9 @@ export default {
 }
 .seller-price {
   float: right;
+}
+.seller-morebtn {
+  float: right;
+  margin-right: 30px;
 }
 </style>

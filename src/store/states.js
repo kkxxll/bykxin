@@ -1,4 +1,5 @@
 export const state = {
   user: '',
-  admin: 0
+  admin: 0,
+  sellDetail: {}
 }

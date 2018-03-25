@@ -64,3 +64,16 @@ exports.list = function (req, res) {
     }
   })
 }
+exports.detail = function (req, res) {
+  let id = req.params.id
+  Sell.findOne({_id: id}).exec(function (err, doc) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.json({
+        status: '0',
+        sell: doc
+      })
+    }
+  })
+}

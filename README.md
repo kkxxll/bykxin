@@ -26,3 +26,4 @@ npm run build --report
 #### buy add
 #### category debug
 #### sell category list
+#### list+detail+pagination

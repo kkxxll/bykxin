@@ -10,6 +10,9 @@ import Seller from '@/container/Seller'
 import SellNew from '@/container/SellNew'
 import BuyNew from '@/container/BuyNew'
 
+import SellDetail from '@/container/SellDetail'
+import SellList from '@/container/SellList'
+
 import Admin from '@/container/Admin/Index'
 import AdminUser from '@/container/Admin/UserList'
 import AdminGoods from '@/container/Admin/GoodsList'
@@ -70,6 +73,16 @@ export default new Router({
         signinRequired: true
       },
       component: BuyNew
+    },
+    {
+      path: '/selldetail/:name/:id',
+      name: 'SellDetail',
+      component: SellDetail
+    },
+    {
+      path: '/selllist/:name/:id',
+      name: 'SellList',
+      component: SellList
     },
     {
       path: '/admin',
