@@ -1,5 +1,6 @@
 <template>
   <div class="seller">
+    <serach :name='catename'></serach>
     <div class="seller-newbtn">
       <el-button type="primary" @click="openBuyNew" v-if="user">求购其他商品</el-button>
       <el-button type="primary" v-else disabled>求购其他商品(请先登录)</el-button>
@@ -37,20 +38,20 @@
 </template>
 
 <script>
-import SellDetail from './SellDetail'
+import Serach from './Search'
 import moment from 'moment'
 import axios from 'axios'
 export default {
   name: 'Buyer',
   data () {
     return {
+      catename: '出售',
       currentDate: new Date(),
       activecategory: [],
       category: [],
       categoryObj: {},
       sells: [],
       sellDetail: {}
-      // sellall: []
     }
   },
   filters: {
@@ -98,7 +99,7 @@ export default {
     }
   },
   components: {
-    SellDetail
+    Serach
   }
 }
 </script>

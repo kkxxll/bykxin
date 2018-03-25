@@ -27,3 +27,4 @@ npm run build --report
 #### category debug
 #### sell category list
 #### list+detail+pagination
+#### search+result

@@ -13,6 +13,8 @@ import BuyNew from '@/container/BuyNew'
 import SellDetail from '@/container/SellDetail'
 import SellList from '@/container/SellList'
 
+import Result from '@/container/Result'
+
 import Admin from '@/container/Admin/Index'
 import AdminUser from '@/container/Admin/UserList'
 import AdminGoods from '@/container/Admin/GoodsList'
@@ -83,6 +85,11 @@ export default new Router({
       path: '/selllist/:name/:id',
       name: 'SellList',
       component: SellList
+    },
+    {
+      path: '/result/:name/:q',
+      name: 'Result',
+      component: Result
     },
     {
       path: '/admin',

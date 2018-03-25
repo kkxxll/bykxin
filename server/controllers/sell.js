@@ -53,20 +53,22 @@ exports.save = function (req, res) {
 
 exports.list = function (req, res) {
   let id = req.params.id
-  Sell.find({category: id}).sort('meta.createAt').exec(function (err, doc) {
-    if (err) {
-      console.log(err)
-    } else {
-      res.json({
-        status: '0',
-        sells: doc
-      })
-    }
-  })
+  Sell.find({ category: id })
+    .sort('meta.createAt')
+    .exec(function (err, doc) {
+      if (err) {
+        console.log(err)
+      } else {
+        res.json({
+          status: '0',
+          sells: doc
+        })
+      }
+    })
 }
 exports.detail = function (req, res) {
   let id = req.params.id
-  Sell.findOne({_id: id}).exec(function (err, doc) {
+  Sell.findOne({ _id: id }).exec(function (err, doc) {
     if (err) {
       console.log(err)
     } else {
@@ -75,5 +77,17 @@ exports.detail = function (req, res) {
         sell: doc
       })
     }
+  })
+}
+exports.search = function (req, res) {
+  let q = req.params.q
+  Sell.find({ title: new RegExp(q + '.*', 'i') }).exec(function (err, sells) {
+    if (err) {
+      console.log(err)
+    }
+    res.json({
+      status: '0',
+      result: sells
+    })
   })
 }

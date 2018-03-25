@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     backSeller () {
-      this.$router.push({name: 'Seller'})
+      this.$router.go(-1)
     }
   }
 }
