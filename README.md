@@ -29,3 +29,7 @@ npm run build --report
 #### list+detail+pagination
 #### search+result
 #### upload img
+#### password salt
+#### pv
+#### admin sell list
+#### sell by user

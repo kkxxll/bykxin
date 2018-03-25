@@ -4,8 +4,8 @@
       <el-menu-item index="AdminUser">用户管理</el-menu-item>
       <el-submenu index="2">
         <template slot="title">商品管理</template>
-        <el-menu-item index="AdminGoods">查看商品</el-menu-item>
-        <el-menu-item index="2-2">编辑商品</el-menu-item>
+        <el-menu-item index="AdminSellList">出售的商品</el-menu-item>
+        <el-menu-item index="2-2">求购的商品</el-menu-item>
         <!-- <el-submenu index="2-4">
           <template slot="title">选项4</template>
           <el-menu-item index="2-4-1">选项1</el-menu-item>

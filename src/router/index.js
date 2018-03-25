@@ -12,12 +12,13 @@ import BuyNew from '@/container/BuyNew'
 
 import SellDetail from '@/container/SellDetail'
 import SellList from '@/container/SellList'
+import UserSell from '@/container/UserSell'
 
 import Result from '@/container/Result'
 
 import Admin from '@/container/Admin/Index'
 import AdminUser from '@/container/Admin/UserList'
-import AdminGoods from '@/container/Admin/GoodsList'
+import AdminSellList from '@/container/Admin/SellList'
 import AdminCategory from '@/container/Admin/CategoryList'
 import NotFound from '@/container/NotFound'
 
@@ -87,6 +88,11 @@ export default new Router({
       component: SellList
     },
     {
+      path: '/usersell/:author',
+      name: 'UserSell',
+      component: UserSell
+    },
+    {
       path: '/result/:name/:q',
       name: 'Result',
       component: Result
@@ -108,12 +114,12 @@ export default new Router({
           component: AdminUser
         },
         {
-          path: 'goods',
-          name: 'AdminGoods',
+          path: 'sell',
+          name: 'AdminSellList',
           meta: {
             adminRequired: true
           },
-          component: AdminGoods
+          component: AdminSellList
         },
         {
           path: 'category',

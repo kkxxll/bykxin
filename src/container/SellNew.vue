@@ -27,10 +27,10 @@
               <input type="file" name="photo" multiple="multiple">
           </div>
         </el-form-item>
-        <input type="submit">
+        <input type="submit" @click="submitSell">
       </el-form>
     </div>
-    <!-- <iframe name="hide_iframe" v-show="false"></iframe> -->
+    <iframe name="hide_iframe" v-show="false"></iframe>
   </div>
 </template>
 
@@ -60,6 +60,11 @@ export default {
       })
       this.form.category = arr
     })
+  },
+  methods: {
+    submitSell () {
+      console.log(111)
+    }
   }
 }
 </script>

@@ -1,4 +1,6 @@
 var User = require('../models/user')
+var bcrypt = require('bcrypt')
+var SALT_WORK_FACTOR = 10
 
 exports.signin = function (req, res) {
   let param = {
@@ -18,24 +20,29 @@ exports.signin = function (req, res) {
           msg: '该用户名还未注册'
         })
       }
-      if (doc.password === param.password) {
-        req.session.user = doc.name
-        req.session.role = doc.role
-        // console.log(req.session)
-        let data = {
-          name: doc.name,
-          rank: doc.role
+      doc.comparePassword(param.password, function (err, isMatch) {
+        if (err) {
+          console.log(err)
         }
-        res.json({
-          status: '0',
-          msg: data
-        })
-      } else {
-        res.json({
-          status: '1',
-          msg: '密码错误'
-        })
-      }
+        if (isMatch) {
+          req.session.user = doc.name
+          req.session.role = doc.role
+          // console.log(req.session)
+          let data = {
+            name: doc.name,
+            rank: doc.role
+          }
+          res.json({
+            status: '0',
+            msg: data
+          })
+        } else {
+          res.json({
+            status: '1',
+            msg: '密码错误'
+          })
+        }
+      })
     }
   })
 }
@@ -59,11 +66,22 @@ exports.signup = function (req, res) {
           msg: '用户名已存在'
         })
       } else {
-        let _user = new User(param)
-        _user.save()
-        res.json({
-          status: '0',
-          msg: '注册成功'
+        bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+          if (err) {
+            console.log(err)
+          }
+          bcrypt.hash(param.password, salt, function (err, hash) {
+            if (err) {
+              console.log(err)
+            }
+            param.password = hash
+            let _user = new User(param)
+            _user.save()
+            res.json({
+              status: '0',
+              msg: '注册成功'
+            })
+          })
         })
       }
     }

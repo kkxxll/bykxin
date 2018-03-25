@@ -11,11 +11,13 @@
       <el-form-item label="上一次修改日期">
         <el-input v-model="formdata.updateAt" disabled></el-input>
       </el-form-item>
-      <el-form-item label="出售的宝贝">
+      <el-form-item label="出售的宝贝" class="usercenter-par">
         <el-input v-model="formdata.sell" disabled></el-input>
+        <el-button type="primary" class="usercenter-child" @click="userSell">查看</el-button>
       </el-form-item>
-      <el-form-item label="求购的宝贝">
+      <el-form-item label="求购的宝贝" class="usercenter-par">
         <el-input v-model="formdata.buy" disabled></el-input>
+        <el-button type="primary" class="usercenter-child">查看</el-button>
       </el-form-item>
     </el-form>
 
@@ -50,11 +52,25 @@ export default {
         this.sell = res.msg.sell.length
       }
     })
+  },
+  methods: {
+    userSell () {
+      let author = this.$store.state.user
+      this.$router.push({name: 'UserSell', params: { author }})
+    }
   }
 }
 </script>
 <style lang="less" scoped>
 .usercenter {
   width: 60%;
+}
+.usercenter-par {
+  position: relative;
+}
+.usercenter-child {
+  position: absolute;
+  right: -80px;
+  top: 0;
 }
 </style>
