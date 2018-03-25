@@ -28,3 +28,4 @@ npm run build --report
 #### sell category list
 #### list+detail+pagination
 #### search+result
+#### upload img
