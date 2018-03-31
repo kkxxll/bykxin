@@ -22,6 +22,7 @@ var users = require('./routes/users')
 var category = require('./routes/category')
 var sell = require('./routes/sell')
 var buy = require('./routes/buy')
+var sellcm = require('./routes/sellcm')
 
 var app = express()
 
@@ -58,6 +59,7 @@ app.use('/api/users', users)
 app.use('/api/category', category)
 app.use('/api/sell', sell)
 app.use('/api/buy', buy)
+app.use('/api/sellcm', sellcm)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
