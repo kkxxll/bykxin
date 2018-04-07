@@ -17,12 +17,13 @@
             <el-row>
               <el-col :span="5" v-for="(sell, index) in sells[index]" :key="index" :offset="index % 4 > 0 ? 1 : 0">
                 <el-card :body-style="{ padding: '0px' }">
-                  <img :src="sell.photo[0]" class="image">
+                  <!-- <img :src='"../assets/"+ sell.photo[0]' class="image"> -->
+                  <img src="../assets/logo.png" class="image">
                   <div style="padding: 14px;">
                     <span>{{sell.title}}</span>
                     <span class="seller-price">￥{{sell.price}}</span>
                     <div class="bottom clearfix">
-                      <time class="time">{{ sell.meta.createAt|formatTime }}</time>
+                      <span class="time">{{ sell.meta.createAt|formatTime }}</span>
                       <el-button type="text" class="button" @click="openDetail(sell._id, item)">查看详情</el-button>
                     </div>
                   </div>

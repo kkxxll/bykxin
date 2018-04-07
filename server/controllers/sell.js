@@ -2,7 +2,7 @@
 var Sell = require('../models/sell')
 var fs = require('fs')
 var path = require('path')
-// var Category = require('../models/category')
+var Category = require('../models/category')
 
 exports.save = function (req, res) {
   var sellObj = {
@@ -10,52 +10,63 @@ exports.save = function (req, res) {
     title: req.body.title,
     desc: req.body.desc,
     price: req.body.price,
-    category: req.body.category
+    category: req.body.category,
+    photos: req.poster
   }
-  console.log(sellObj)
-  console.log('sdfsdf', req.poster)
-  res.json({
-    status: '0',
-    msg: 'test'
-  })
-  // Category.findOne({ name: sellObj.category }, function (err, catename) {
-  //   if (err) {
-  //     console.log(err)
-  //   } else {
-  //     sellObj.categoryId = catename._id
-  //   }
-  //   var _sell = new Sell({
-  //     author: sellObj.author,
-  //     title: sellObj.title,
-  //     desc: sellObj.desc,
-  //     price: sellObj.price,
-  //     photo: sellObj.photo,
-  //     category: catename._id
-  //   })
-  //   _sell.save(function (err, sell) {
-  //     console.log(sell.category)
-  //     if (err) {
-  //       console.log(err)
-  //     } else {
-  //       Category.findById(sellObj.categoryId, function (err, doc) {
-  //         if (err) {
-  //           console.log(err)
-  //         } else {
-  //           doc.sells.push(sell._id)
-  //           doc.save(function (err) {
-  //             if (err) {
-  //               console.log(err)
-  //             }
-  //           })
-  //           res.json({
-  //             status: '0',
-  //             msg: '出售商品添加成功'
-  //           })
-  //         }
-  //       })
-  //     }
-  //   })
-  // })
+  // console.log(sellObj)
+  if (
+    sellObj.author &&
+    sellObj.title &&
+    sellObj.desc &&
+    sellObj.price &&
+    sellObj.category &&
+    sellObj.photos
+  ) {
+    Category.findOne({ name: sellObj.category }, function (err, catename) {
+      if (err) {
+        console.log(err)
+      } else {
+        sellObj.categoryId = catename._id
+      }
+      var _sell = new Sell({
+        author: sellObj.author,
+        title: sellObj.title,
+        desc: sellObj.desc,
+        price: sellObj.price,
+        photo: sellObj.photos,
+        category: catename._id
+      })
+      _sell.save(function (err, sell) {
+        console.log(sell.category)
+        if (err) {
+          console.log(err)
+        } else {
+          Category.findById(sellObj.categoryId, function (err, doc) {
+            if (err) {
+              console.log(err)
+            } else {
+              doc.sells.push(sell._id)
+              doc.save(function (err) {
+                if (err) {
+                  console.log(err)
+                }
+              })
+              // window.location('/kkkkkkk')
+              res.json({
+                status: '0',
+                msg: '出售商品添加成功'
+              })
+            }
+          })
+        }
+      })
+    })
+  } else {
+    res.json({
+      status: '1',
+      msg: '信息填写不完整'
+    })
+  }
 }
 
 exports.allsell = function (req, res) {
@@ -105,7 +116,7 @@ exports.listsell = function (req, res) {
 }
 exports.detail = function (req, res) {
   let id = req.params.id
-  Sell.update({_id: id}, {$inc: {pv: 1}}, function (err) {
+  Sell.update({ _id: id }, { $inc: { pv: 1 } }, function (err) {
     if (err) {
       console.log(err)
     }
@@ -159,7 +170,7 @@ exports.savePhoto = function (req, res, next) {
         var timestamp = Date.now()
         var type = ele.type.split('/')[1]
         var poster = timestamp + '.' + type
-        var newPath = path.join(__dirname, '../../', '/public/upload/' + poster)
+        var newPath = path.join(__dirname, '../../', '/src/assets/' + poster)
         fs.writeFile(newPath, data, function (err) {
           if (err) {
             console.log(err)

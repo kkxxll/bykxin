@@ -55,7 +55,13 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
+    proxyTable: {
+      '/api': {
+        target: 'http://localhost:3334',
+        secure: false
+      }
+    },
 
     /**
      * Source Maps

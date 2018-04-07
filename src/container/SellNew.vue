@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     submitSell () {
-      console.log(111)
+      this.$router.push({name: 'Seller'})
     }
   }
 }

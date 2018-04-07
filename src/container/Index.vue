@@ -13,10 +13,12 @@
     <el-tag v-show="user">欢迎您，{{user}}</el-tag>
     <el-button type="danger" @click="logout" plain v-show="user">退出</el-button>
     <router-view/>
+    <chat></chat>
   </div>
 </template>
 
 <script>
+import Chat from './Chat'
 import axios from 'axios'
 export default {
   name: 'HelloWorld',
@@ -47,6 +49,9 @@ export default {
         this.$router.push({ name: 'Index' })
       })
     }
+  },
+  components: {
+    Chat
   }
 }
 </script>
