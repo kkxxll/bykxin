@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/chat' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/buyer' }">我是卖家</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/seller' }">我是买家</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/usercenter' }" v-show="user">个人中心</el-breadcrumb-item>

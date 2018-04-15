@@ -1,4 +1,3 @@
-// var mongoose = require('mongoose')
 var Sell = require('../models/sell')
 var fs = require('fs')
 var path = require('path')
