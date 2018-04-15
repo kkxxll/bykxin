@@ -8,5 +8,8 @@ export const mutations = {
   },
   [types.SET_SELLDETAIL] (state, { selldetail }) {
     state.sellDetail = selldetail
+  },
+  [types.SET_TOUSER] (state, { toUser }) {
+    state.toUser = toUser
   }
 }

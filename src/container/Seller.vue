@@ -17,8 +17,8 @@
             <el-row>
               <el-col :span="5" v-for="(sell, index) in sells[index]" :key="index" :offset="index % 4 > 0 ? 1 : 0">
                 <el-card :body-style="{ padding: '0px' }">
-                  <!-- <img :src='"../assets/"+ sell.photo[0]' class="image"> -->
-                  <img src="../assets/logo.png" class="image">
+                  <img :src='require("../assets/"+ sell.photo[0])' class="image">
+                  <!-- <img src="../assets/logo.png" class="image"> -->
                   <div style="padding: 14px;">
                     <span>{{sell.title}}</span>
                     <span class="seller-price">￥{{sell.price}}</span>
@@ -88,6 +88,7 @@ export default {
     getByCategory (id) {
       axios.get('/api/sell/list/' + id).then((response) => {
         let res = response.data
+        console.log(res)
         this.sells.push(res.sells.slice(0, 4))
       })
     },

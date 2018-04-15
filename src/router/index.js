@@ -15,6 +15,7 @@ import SellList from '@/container/SellList'
 import UserSell from '@/container/UserSell'
 
 import Result from '@/container/Result'
+import Chat from '@/container/Chat'
 
 import Admin from '@/container/Admin/Index'
 import AdminUser from '@/container/Admin/UserList'
@@ -30,6 +31,7 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: Index,
+      redirect: '/chat',
       children: [
         {
           path: 'usercenter',
@@ -48,6 +50,11 @@ export default new Router({
           path: 'seller',
           name: 'Seller',
           component: Seller
+        },
+        {
+          path: 'chat',
+          name: 'Chat',
+          component: Chat
         }
       ]
     },

@@ -7,5 +7,8 @@ export const actions = {
   },
   setSellDetail ({ commit, state }, obj) {
     commit('SET_SELLDETAIL', { selldetail: obj })
+  },
+  setToUser ({ commit, state }, toUser) {
+    commit('SET_TOUSER', { toUser: toUser })
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/chat' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/buyer' }">我是卖家</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/seller' }">我是买家</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/usercenter' }" v-show="user">个人中心</el-breadcrumb-item>
@@ -13,12 +13,12 @@
     <el-tag v-show="user">欢迎您，{{user}}</el-tag>
     <el-button type="danger" @click="logout" plain v-show="user">退出</el-button>
     <router-view/>
-    <chat></chat>
+    <!-- <chat></chat> -->
   </div>
 </template>
 
 <script>
-import Chat from './Chat'
+// import Chat from './Chat'
 import axios from 'axios'
 export default {
   name: 'HelloWorld',
@@ -49,9 +49,6 @@ export default {
         this.$router.push({ name: 'Index' })
       })
     }
-  },
-  components: {
-    Chat
   }
 }
 </script>

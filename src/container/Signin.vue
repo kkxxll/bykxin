@@ -63,7 +63,7 @@ export default {
             case '2':
               this.$message({
                 showClose: true,
-                message: '该帐号还未注册哦',
+                message: '该帐号还未注册',
                 type: 'warning',
                 center: true
               })

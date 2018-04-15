@@ -18,6 +18,7 @@
         <el-input type="textarea" v-model="form.comment"></el-input>
         <el-button class="sellcm-submit" type="success" @click="submitCm" disabled v-if="!user">发表留言</el-button>
         <el-button class="sellcm-submit" type="success" @click="submitCm" v-else>发表留言</el-button>
+        <el-button class="sellcm-setfrom" type="primary" @click="setFrom" v-show="user">聊天</el-button>
         <el-button class="sellcm-txtsubmit" type="text" @click="openSignin" v-show="!user">登录后留言</el-button>
       </div>
       <div class="sellcm-list">
@@ -85,6 +86,10 @@ export default {
     this.getReplaly()
   },
   methods: {
+    setFrom () {
+      this.$store.dispatch('setToUser', this.sellDetail.author)
+      this.$router.push({ name: 'Chat' })
+    },
     getComment () {
       const id = this.$route.params.id
       axios.get('/api/sellcm/list/' + id).then((response) => {
@@ -181,6 +186,11 @@ export default {
   position: absolute;
   right: -130px;
   top: 0;
+}
+.sellcm-setfrom {
+  position: absolute;
+  top: 45px;
+  right: -130px;
 }
 .sellcm-txtsubmit {
   position: absolute;

@@ -7,5 +7,8 @@ export const getters = {
   },
   sellDetail: state => {
     return state.sellDetail
+  },
+  toUser: state => {
+    return state.toUser
   }
 }

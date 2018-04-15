@@ -38,7 +38,7 @@ exports.save = function (req, res) {
         })
       } else {
         if (doc) {
-          console.log(doc)
+          // console.log(doc)
           commentObj.from = doc._id
         }
       }
